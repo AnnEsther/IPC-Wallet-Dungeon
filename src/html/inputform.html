@@ -1,0 +1,1579 @@
+<!-- <style>
+  .mainDiv {
+    /* background: #ad6f0a; */
+    /* padding: 4px; */
+    position: relative;
+    /* display:none; */
+  }
+
+  .loadIPC {
+    background: #b3b1b1;
+    /* border: 4px solid #005bad; */
+    border-radius: 15px;
+    padding: 10px;
+    /* height: 257px; 
+        /* margin: 20px auto 0;
+        width: 400px;*/
+  }
+
+  /* .login h1 {
+    background-image: linear-gradient(top, #f1f3f3, #d4dae0);
+    border-bottom: 1px solid #a6abaf;
+    border-radius: 6px 6px 0 0;
+    box-sizing: border-box;
+    color: #727678;
+    display: block;
+    height: 43px;
+    font: 600 14px/1 "Open Sans", sans-serif;
+    padding-top: 14px;
+    margin: 0;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
+  } */
+
+  input[type="Dungeon-id"] {
+    font-family: "ＭＳ Ｐゴシック";
+    font-weight: bold;
+    text-align: center;
+    background: #e1e1e1;
+    border: 1px solid #000;
+    border-radius: 4px;
+    /*box-shadow: 0 1px #fff;
+        box-sizing: border-box;*/
+    color: #000;
+    height: 39px;
+    margin: 0 29px 0 29px;
+    transition: box-shadow 0.3s;
+    width: 500px;
+    /* //font-size: 0.8em; */
+    /* padding-left: 37px; */
+  }
+
+  input[type="Dungeon-id"]:focus {
+    box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+    outline: 0;
+  }
+
+  .toggle {
+    display: block;
+    height: 16px;
+    margin-top: -20px;
+    width: 87px;
+    z-index: -1;
+  }
+
+  input[type="submit"] {
+    display: block;
+    font-family: Arial, "Helvetica", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    /* text-shadow: 1px 1px 0px #37a69b;
+            margin: 29px;
+            width: 240px;
+            padding-top: 6px;
+             height: 35px;
+        */
+
+    position: relative;
+    cursor: pointer;
+    border: none;
+    background-color: #f9a31b;
+    background-image: linear-gradient(top, #df9219, #3111);
+    border-radius: 5px;
+    box-shadow: inset 0px 1px 0px #f9a31b, 0px 5px 0px 0px #ad6f0a,
+      0px 10px 5px #999;
+    width: 50%;
+    padding: 6px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .shadow {
+    background: #000;
+    border-radius: 12px 12px 4px 4px;
+    box-shadow: 0 0 20px 10px #000;
+    height: 12px;
+    margin: 30px auto;
+    opacity: 0.2;
+    width: 270px;
+  }
+
+  input[type="submit"]:active {
+    top: 3px;
+    box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d,
+      0px 5px 3px #999;
+  }
+</style>
+
+<div class="mainDiv">
+  <div class="loadIPC">
+    <h2 align="center">IPC DUNGEONS</h2>
+    
+    <h4>
+      <input
+        type="Dungeon-id"
+        placeholder="ENTER DUNGEON ADDRESS"
+        id="DUNGEON ADDRESS"
+        name="Dungeon-id"
+      />
+    </h4>
+
+    <input type="submit" value="SUBMIT" name="searchBtn" />
+  </div>
+</div> -->
+
+<style>
+
+   /* ------------------- fade-in anim ------------------- */
+
+   @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  .formBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+
+    height: 100vh;
+    width: 100vw;
+
+    font-family: "Press Start 2P";
+    background-color: rgb(227 227 227 / 0%);
+    
+
+    overflow: hidden;
+    animation: 1s linear fadein;
+  }
+
+ 
+  /* ------------------- input styles ------------------- */
+  input[type="Dungeon-id"] {
+    font-family: inherit;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  input[type="Dungeon-id"]:focus {
+    box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+    outline: 0;
+  }
+
+  /* ------------------- Popup Grid styles ------------------- */
+  .popup-grid {
+    display: grid;
+    row-gap: 0;
+    column-gap: 0;
+    grid-template-columns: repeat(60, 10px);
+    grid-template-rows: repeat(10, 10px);
+
+    filter: drop-shadow(0 5px 0 #545454);
+
+    cursor: pointer;
+    font-family: "Press Start 2P";
+  }
+
+  /* ------------------- Button Grid styles ------------------- */
+  .pixel-grid {
+    display: grid;
+    row-gap: 0;
+    column-gap: 0;
+    grid-template-columns: repeat(25, 5px);
+    grid-template-rows: repeat(5, 5px);
+
+    filter: drop-shadow(0 5px 0 #545454);
+
+    cursor: pointer;
+    font-family: "Press Start 2P";
+  }
+
+  .pixel-grid:active {
+    transform: translate(0, 5px);
+    filter: drop-shadow(0 0 0 #545454);
+  }
+
+  /* ------------------- pixel styles ------------------- */
+
+  .transparent {
+    background-color: transparent;
+    height: 10px;
+    width: 10px;
+  }
+
+  .black {
+    background-color: rgb(8, 8, 8);
+    height: 10px;
+    width: 10px;
+  }
+
+  .black-s {
+    background-color: rgb(8, 8, 8);
+    height: 5px;
+    width: 5px;
+  }
+
+  .lightg {
+    background-color: #909090;
+    height: 10px;
+    width: 10px;
+  }
+
+  .lightg-s {
+    background-color: #909090;
+    height: 5px;
+    width: 5px;
+  }
+
+  .white {
+    background-color: white;
+    height: 10px;
+    width: 10px;
+  }
+
+  .white-s {
+    background-color: white;
+    height: 5px;
+    width: 5px;
+  }
+
+  .grey {
+    background-color: #545454;
+    height: 10px;
+    width: 10px;
+  }
+
+  .grey-s {
+    background-color: #545454;
+    height: 5px;
+    width: 5px;
+  }
+
+  /* ------------------- text styles ------------------- */
+  .text {
+    filter: none;
+    position: absolute;
+    display: block;
+
+    z-index: 5;
+
+    font-size: 24px;
+    width: 100%;
+    height: 100%;
+    top: 28%;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+</style>
+
+<div class="formBody">
+  <div class="popup-grid">
+    <div class="text">
+      <form id='getAddress'>
+        <div>IPC DUNGEON</div>
+        <input
+          type="Dungeon-id"
+          placeholder="ENTER DUNGEON ADDRESS"
+          id="DUNGEON ADDRESS"
+          name="Dungeon-id"
+          size="42"
+        />
+        <div
+          id="response"
+          style="
+            font-size: 12px;
+            margin: 5px 0px 0px 0px;
+            color: #b50e0e;
+            font-style: italic;
+          "
+        ></div>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+          "
+        >
+      </form>
+      
+        <div class="pixel-grid">
+          <div class="text" style="font-size: 12px">SUBMIT</div>
+
+          <div class="transparent-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="transparent-s"></div>
+
+          <div class="black-s"></div>
+          <div class="lightg-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="lightg-s"></div>
+          <div class="black-s"></div>
+
+          <div class="black-s"></div>
+          <div class="lightg-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="lightg-s"></div>
+          <div class="black-s"></div>
+
+          <div class="black-s"></div>
+          <div class="lightg-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="white-s"></div>
+          <div class="lightg-s"></div>
+          <div class="black-s"></div>
+
+          <div class="black-s"></div>
+          <div class="grey-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="lightg-s"></div>
+          <div class="grey-s"></div>
+          <div class="black-s"></div>
+
+          <div class="transparent-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="black-s"></div>
+          <div class="transparent-s"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="transparent"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="transparent"></div>
+
+    <div class="black"></div>
+    <div class="lightg"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="lightg"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="lightg"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="white"></div>
+    <div class="lightg"></div>
+    <div class="black"></div>
+
+    <div class="black"></div>
+    <div class="grey"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="lightg"></div>
+    <div class="grey"></div>
+    <div class="black"></div>
+
+    <div class="transparent"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="transparent"></div>
+  </div>
+</div>

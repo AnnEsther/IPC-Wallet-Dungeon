@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    
+    <script type="text/json" src="assets/data/map.json"></script>
+    <script type="text/json" src="assets/data/MapOutput18x18.json"></script>
+
+
+    <link rel="preload" as="image" href="assets/load.png" >
+
+    <!-- <link rel="preload" as="image" href="assets/button_sprite_sheet.png" >
+    ~
+    <link rel="preload" as="image" href="assets/hole.png" >
+    
+    <link rel="preload" as="image" href="assets/logo.png" > -->
+    <!-- <link rel="preload" as="html" href="src/html/inputform.html" > -->
+    
+    <link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet" />
+
+    
+    <script type="text/javascript" src="src/min/phaser.min.js"></script>
+    <script type="text/javascript" src="src/game.js"></script>
+    <script type="text/html" src="src/html/inputform.html"></script>
+
+    <script type="text/javascript" src="src/scenes/initScene.js"></script>
+    <script type="text/javascript" src="src/scenes/landingScene.js"></script>
+    <script type="text/javascript" src="src/scenes/loadingScene.js"></script>
+    <script type="text/javascript" src="src/scenes/formScene.js"></script>
+    <script type="text/javascript" src="src/scenes/ipcScene.js"></script>
+    <script type="text/javascript" src="src/scenes/dungeonScene.js"></script>
+    <script type="text/javascript" src="src/scenes/testingScene.js"></script>
+
+
+    <script type="text/javascript" src="src/objects/BasicButton.js"></script>
+    <script type="text/javascript" src="src/objects/DungeonData.js"></script>
+    <script type="text/javascript" src="src/objects/ipc.js"></script>
+    <script type="text/javascript" src="src/objects/IPC_NPC.js"></script>
+    <script type="text/javascript" src="src/objects/Level_HUD.js"></script>
+    <script type="text/javascript" src="src/objects/Level_Hex.js"></script>
+    <script type="text/javascript" src="src/objects/IpcScrollObject.js"></script>
+
+
+
+
+    
+</head>
+<style>
+    body {
+      background-color: rgb(66, 65, 65);
+      font-family: "Press Start 2P";
+    }
+</style>
+<style media='screen' type='text/css'>
+    @font-face {
+      font-family: PressStart2P;
+      src: url('assets/font/PressStart2P-Regular.ttf');
+      font-weight:400;
+      font-weight:normal;
+    }
+</style>
+<body>
+    <div id="root"></div>
+    <div id="form"></div>
+    <div style="font-family:PressStart2P; position:absolute; left:-1000px; visibility:hidden;">.</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+Build v2
+----------
+
+1. adding a IPC selection screen before the dungeons load up
+2. get better graphics fore the mini map viewer and level shower using AI
+3. fix music bug
+4. get latest 20 tracks from Eris
+
+CHECK_LIST
+----------------
+1. Wallet address owning 1 IPC : 0xF23dD87eD3591D43D3Bc7C2e181C2D0CE5473BC0
+2. Wallet owning more than 1 IPC : 0x5d7F92c45C2B6A1711A0a1A7B7F6608437d17e76
+3. Dummy wallet address : 0x31B54E93EE2EBA3086A55F4249873E291D1AB06C
+4. Sound tracks
